@@ -43,7 +43,7 @@ def send_message():
         return 'Error sending message:', response.text
 
 @app.route('/alertmanager', methods=['POST'])
-def telegram_webhook():
+def alertmanager():
     print("Something received:")
     # Check if the API key is valid
     api_key = request.headers.get('Authorization')[7:]
