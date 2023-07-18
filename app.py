@@ -8,7 +8,7 @@ app = Flask(__name__)
 DEBUG = os.environ.get('DEBUG')
 API_KEY = os.environ.get('API_KEY')
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
-CHAT_ID = os.environ.get('CHAT_ID')
+ALERT_CHAT_ID = os.environ.get('CHAT_ID')
 
 @app.route('/send_message', methods=['POST'])
 def send_message():
@@ -42,7 +42,7 @@ def send_message():
     else:
         return 'Error sending message:', response.text
 
-@app.route('/telegram_webhook', methods=['POST'])
+@app.route('/alertmanager', methods=['POST'])
 def telegram_webhook():
     print("Something received:")
     # Check if the API key is valid
@@ -85,7 +85,7 @@ def telegram_webhook():
     url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
     # Set the payload for the HTTP POST request
     payload = {
-        'chat_id': CHAT_ID,
+        'chat_id': ALERT_CHAT_ID,
         'text': message
     }
 
